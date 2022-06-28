@@ -1,0 +1,46 @@
+﻿@model List<Construction>
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto mt-3">
+            <a type="button"   asp-action="create" class="btn btn-primary">Create</a>
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Desc</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@item.Title</td>
+                            <td>@item.Desc</td>
+                            <td>
+                                <img width="100" src="~/uploads/constructions/@item.Image" />
+                            </td>
+
+                            <td>
+                                <a type="button" asp-route-id="@item.Id" asp-controller="construction" asp-action="edit" class="btn btn-warning">Edit</a>
+                                <a type="button" asp-route-id="@item.Id"  asp-controller="construction" asp-action="delete" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
